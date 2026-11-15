@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState, type FormEvent } from "react";
-import { CircleCheck, CircleHelp, LogOut } from "lucide-react";
+import { ArrowLeftRight, BedDouble, CircleCheck, CircleHelp, LogOut } from "lucide-react";
 import { Button, Card, PageHeader } from "@/components/ui";
 import { STUDENT } from "@/lib/data";
 import { portal, usePortal, type Contact } from "@/lib/store";
@@ -127,6 +127,18 @@ export default function ProfilePage() {
       </div>
 
       <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+        {[
+          { href: "/accommodation", label: "Accommodation", icon: BedDouble },
+          { href: "/change-of-course", label: "Change of course", icon: ArrowLeftRight },
+        ].map(({ href, label, icon: Icon }) => (
+          <Link
+            key={href}
+            href={href}
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-line bg-white px-5 font-semibold hover:border-brand hover:text-brand lg:hidden"
+          >
+            <Icon size={18} /> {label}
+          </Link>
+        ))}
         <Link
           href="/help"
           className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-line bg-white px-5 font-semibold hover:border-brand hover:text-brand"

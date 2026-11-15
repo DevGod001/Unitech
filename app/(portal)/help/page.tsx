@@ -21,6 +21,18 @@ const QUESTIONS = [
     link: "Go to Results",
   },
   {
+    q: "How do I get a room in the hostel?",
+    a: "Open Accommodation, pick a hall and a room type, then press Apply for this room. Student Affairs reviews it and you pay the hostel fee only after a room is allocated.",
+    href: "/accommodation",
+    link: "Go to Accommodation",
+  },
+  {
+    q: "How do I change my course?",
+    a: "Open Change of course, choose the programme you want and tell us why. Your Head of Department reviews it first, then the Dean, then the Registry.",
+    href: "/change-of-course",
+    link: "Go to Change of course",
+  },
+  {
     q: "I forgot my password",
     a: "Visit the ICT help desk with your student ID card. They will reset it while you wait.",
   },

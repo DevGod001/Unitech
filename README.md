@@ -23,6 +23,8 @@ Open http://localhost:3000 and press "Fill in the demo account" on the sign-in p
 | Timetable | Sees classes for each day, built from registered courses |
 | Results | Sees CGPA and results for each semester |
 | Fees | Sees the balance, the fee breakdown and printable receipts |
+| Accommodation | Applies for a hostel room and follows the application's progress |
+| Change of course | Asks to move to another programme; the request goes to the Head of Department first |
 | My profile | Views the school record and edits contact details |
 | Help | Reads short answers to common questions |
 

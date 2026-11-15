@@ -1,14 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { Check, ChevronRight, MapPin } from "lucide-react";
+import { ArrowLeftRight, BedDouble, Check, ChevronRight, MapPin } from "lucide-react";
 import { Badge, ButtonLink, Card } from "@/components/ui";
 import { STUDENT, UNIVERSITY } from "@/lib/data";
 import { cgpa, classesOn, courseByCode, feeSummary, naira, nextClassDay, unitsFor } from "@/lib/format";
 import { usePortal } from "@/lib/store";
 
 export default function DashboardPage() {
-  const { registration } = usePortal();
+  const { registration, hostel, courseChange } = usePortal();
   const fees = feeSummary();
   const codes = registration?.codes ?? [];
   const registered = codes.length > 0;
@@ -140,6 +140,28 @@ export default function DashboardPage() {
         </Card>
       </div>
 
+      <section aria-labelledby="requests-title" className="mt-8">
+        <h2 id="requests-title" className="text-[20px] font-bold">
+          Apply or make a request
+        </h2>
+        <div className="mt-4 grid gap-3 sm:grid-cols-2">
+          <RequestLink
+            href="/accommodation"
+            icon={<BedDouble size={22} />}
+            label="Hostel accommodation"
+            detail={hostel ? `${hostel.hall}, under review` : "Apply for a room on campus"}
+            active={!!hostel}
+          />
+          <RequestLink
+            href="/change-of-course"
+            icon={<ArrowLeftRight size={22} />}
+            label="Change of course"
+            detail={courseChange ? "With your Head of Department" : "Ask to move to another programme"}
+            active={!!courseChange}
+          />
+        </div>
+      </section>
+
       <dl className="mt-8 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-3">
         <Fact label="Overall grade (CGPA)" value={cgpa().toFixed(2)} note="out of 5.00" />
         <Fact label="Units this semester" value={registered ? String(unitsFor(codes)) : "0"} note={`maximum ${UNIVERSITY.maxUnits}`} />
@@ -156,5 +178,30 @@ function Fact({ label, value, note, alert }: { label: string; value: string; not
       <dd className={`tabular mt-1 font-display text-[28px] font-bold ${alert ? "text-accent" : "text-ink"}`}>{value}</dd>
       <dd className="text-[14px] text-muted">{note}</dd>
     </div>
+  );
+}
+
+function RequestLink({
+  href,
+  icon,
+  label,
+  detail,
+  active,
+}: {
+  href: string;
+  icon: React.ReactNode;
+  label: string;
+  detail: string;
+  active: boolean;
+}) {
+  return (
+    <Link href={href} className="flex min-h-20 items-center gap-4 rounded-2xl border border-line bg-white p-5 transition-colors hover:border-brand">
+      <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-brand-soft text-brand">{icon}</span>
+      <span className="min-w-0 flex-1">
+        <span className="block font-semibold">{label}</span>
+        <span className="block text-[15px] text-muted">{detail}</span>
+      </span>
+      {active ? <Badge tone="info">In progress</Badge> : <ChevronRight size={18} className="text-muted" />}
+    </Link>
   );
 }

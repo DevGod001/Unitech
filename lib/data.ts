@@ -25,7 +25,9 @@ export const STUDENT = {
   department: "Computer Science",
   faculty: "Faculty of Computing",
   programme: "B.Sc. Computer Science",
+  gender: "Male" as "Male" | "Female",
   stateOfOrigin: "Rivers State",
+  headOfDepartment: "Prof. Dagogo Amadi",
   schoolEmail: "tamuno.briggs@student.unitech.edu.ng",
   adviser: "Dr. Ngozi Wokoma",
 };
@@ -156,3 +158,62 @@ export const RECEIPTS: Receipt[] = [
   { id: "UTP-RCP-260112-0911", date: "12 January 2026", session: "2025/2026", description: "School fees, second instalment", amount: 220000, method: "Bank transfer" },
   { id: "UTP-RCP-250908-0254", date: "8 September 2025", session: "2025/2026", description: "School fees, first instalment", amount: 280000, method: "Bank deposit" },
 ];
+
+export type RoomOption = { beds: number; price: number; spacesLeft: number };
+export type Hall = { name: string; gender: "Male" | "Female"; about: string; rooms: RoomOption[] };
+
+export const HALLS: Hall[] = [
+  {
+    name: "Bonny Hall",
+    gender: "Male",
+    about: "Beside the Computing Block. Five minutes' walk to lectures.",
+    rooms: [
+      { beds: 4, price: 85000, spacesLeft: 46 },
+      { beds: 2, price: 140000, spacesLeft: 8 },
+    ],
+  },
+  {
+    name: "Okrika Hall",
+    gender: "Male",
+    about: "Near the sports centre and the main gate.",
+    rooms: [
+      { beds: 4, price: 75000, spacesLeft: 112 },
+      { beds: 2, price: 130000, spacesLeft: 0 },
+    ],
+  },
+  {
+    name: "Opobo Hall",
+    gender: "Female",
+    about: "Beside the library, with a reading room on each floor.",
+    rooms: [
+      { beds: 4, price: 85000, spacesLeft: 58 },
+      { beds: 2, price: 140000, spacesLeft: 12 },
+    ],
+  },
+  {
+    name: "Kalabari Hall",
+    gender: "Female",
+    about: "Near the medical centre and the cafeteria.",
+    rooms: [
+      { beds: 4, price: 75000, spacesLeft: 90 },
+      { beds: 2, price: 130000, spacesLeft: 3 },
+    ],
+  },
+];
+
+export const ACCOMMODATION = {
+  closes: "Friday 4 December 2026",
+  office: "Student Affairs office",
+};
+
+export const PROGRAMMES: { faculty: string; programmes: string[] }[] = [
+  { faculty: "Faculty of Computing", programmes: ["B.Sc. Software Engineering", "B.Sc. Cyber Security", "B.Sc. Information Technology"] },
+  { faculty: "Faculty of Engineering", programmes: ["B.Eng. Computer Engineering", "B.Eng. Electrical Engineering", "B.Eng. Petroleum Engineering"] },
+  { faculty: "Faculty of Science", programmes: ["B.Sc. Mathematics", "B.Sc. Physics", "B.Sc. Statistics"] },
+  { faculty: "Faculty of Management Sciences", programmes: ["B.Sc. Accounting", "B.Sc. Business Administration"] },
+];
+
+export const COURSE_CHANGE = {
+  minCgpa: 2.4,
+  closes: "Friday 11 December 2026",
+};

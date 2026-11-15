@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, type ReactNode } from "react";
-import { BookOpen, CalendarDays, CircleHelp, GraduationCap, House, LogOut, UserRound, Wallet } from "lucide-react";
+import { ArrowLeftRight, BedDouble, BookOpen, CalendarDays, CircleHelp, GraduationCap, House, LogOut, UserRound, Wallet } from "lucide-react";
 import { STUDENT } from "@/lib/data";
 import { portal, usePortal } from "@/lib/store";
 import { Logo } from "./Logo";
@@ -14,6 +14,11 @@ const NAV = [
   { href: "/timetable", label: "Timetable", icon: CalendarDays },
   { href: "/results", label: "Results", icon: GraduationCap },
   { href: "/fees", label: "Fees", icon: Wallet },
+];
+
+const REQUESTS = [
+  { href: "/accommodation", label: "Accommodation", icon: BedDouble },
+  { href: "/change-of-course", label: "Change of course", icon: ArrowLeftRight },
 ];
 
 const MORE = [
@@ -65,15 +70,19 @@ export function Shell({ children }: { children: ReactNode }) {
       </a>
 
       {/* Desktop sidebar */}
-      <aside className="no-print fixed inset-y-0 left-0 hidden w-[264px] flex-col border-r border-line bg-white px-5 py-7 lg:flex">
-        <Link href="/dashboard" className="mb-10 px-2">
+      <aside className="no-print fixed inset-y-0 left-0 hidden w-[264px] flex-col overflow-y-auto border-r border-line bg-white px-5 py-7 lg:flex">
+        <Link href="/dashboard" className="mb-8 px-2">
           <Logo />
         </Link>
         <nav aria-label="Main" className="flex flex-1 flex-col gap-1">
           {NAV.map((item) => (
             <SideLink key={item.href} {...item} active={isActive(item.href)} />
           ))}
-          <div className="my-4 border-t border-line" />
+          <div className="my-3 border-t border-line" />
+          {REQUESTS.map((item) => (
+            <SideLink key={item.href} {...item} active={isActive(item.href)} />
+          ))}
+          <div className="my-3 border-t border-line" />
           {MORE.map((item) => (
             <SideLink key={item.href} {...item} active={isActive(item.href)} />
           ))}
