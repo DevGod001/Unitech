@@ -6,6 +6,7 @@ import { useEffect, type ReactNode } from "react";
 import { ArrowLeftRight, BedDouble, BookOpen, CalendarDays, CircleHelp, GraduationCap, House, LogOut, UserRound, Wallet } from "lucide-react";
 import { STUDENT } from "@/lib/data";
 import { portal, usePortal } from "@/lib/store";
+import { Lights } from "./Festive";
 import { Logo } from "./Logo";
 
 const NAV = [
@@ -108,6 +109,8 @@ export function Shell({ children }: { children: ReactNode }) {
           {initials}
         </Link>
       </header>
+
+      <Lights />
 
       <main id="content" className="mx-auto max-w-[920px] px-5 pb-32 pt-8 sm:px-8 lg:px-12 lg:pb-16 lg:pt-12">
         {children}

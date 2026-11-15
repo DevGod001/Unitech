@@ -217,3 +217,10 @@ export const COURSE_CHANGE = {
   minCgpa: 2.4,
   closes: "Friday 11 December 2026",
 };
+
+// Seasonal theme. Set `active` to false to return to the normal look.
+export const CHRISTMAS = {
+  active: true,
+  breakStarts: "Friday 18 December 2026",
+  lecturesResume: "Monday 4 January 2027",
+};

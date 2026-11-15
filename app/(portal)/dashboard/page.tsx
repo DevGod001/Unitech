@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { ArrowLeftRight, BedDouble, Check, ChevronRight, MapPin } from "lucide-react";
 import { Badge, ButtonLink, Card } from "@/components/ui";
-import { STUDENT, UNIVERSITY } from "@/lib/data";
+import { Snow, Tree } from "@/components/Festive";
+import { CHRISTMAS, STUDENT, UNIVERSITY } from "@/lib/data";
 import { cgpa, classesOn, courseByCode, feeSummary, naira, nextClassDay, unitsFor } from "@/lib/format";
 import { usePortal } from "@/lib/store";
 
@@ -64,20 +65,34 @@ export default function DashboardPage() {
   return (
     <div className="rise">
       <header className="mb-8">
-        <h1 className="text-[30px] font-bold sm:text-[38px]">Welcome, {STUDENT.firstName}</h1>
+        <h1 className="text-[30px] font-bold sm:text-[38px]">
+          {CHRISTMAS.active ? "Merry Christmas" : "Welcome"}, {STUDENT.firstName}
+        </h1>
         <p className="mt-2 text-[17px] text-muted">
           {STUDENT.level} {STUDENT.department}. {UNIVERSITY.semester}, {UNIVERSITY.session}.
         </p>
       </header>
 
+      {CHRISTMAS.active && (
+        <section aria-label="Christmas message" className="mb-6 flex items-center gap-4 rounded-2xl border border-accent/20 bg-accent-soft p-5">
+          <Tree className="h-14 w-12 shrink-0" />
+          <p className="text-[16px]">
+            <span className="block font-display text-[18px] font-bold text-accent">Compliments of the season from all of us at Unitech</span>
+            Lectures stop for the break on {CHRISTMAS.breakStarts} and start again on {CHRISTMAS.lecturesResume}. Travel
+            safely.
+          </p>
+        </section>
+      )}
+
       {/* The one thing to do now */}
       <section aria-labelledby="next-step" className="relative overflow-hidden rounded-3xl bg-brand p-7 text-white sm:p-10">
-        <p className="text-[15px] font-semibold text-white/75">Your next step</p>
-        <h2 id="next-step" className="mt-2 max-w-[18ch] text-[30px] font-bold sm:text-[40px]">
+        <Snow />
+        <p className="relative text-[15px] font-semibold text-white/75">Your next step</p>
+        <h2 id="next-step" className="relative mt-2 max-w-[18ch] text-[30px] font-bold sm:text-[40px]">
           {nextStep.title}
         </h2>
-        <p className="mt-3 max-w-[44ch] text-[17px] text-white/85">{nextStep.text}</p>
-        <ButtonLink href={nextStep.href} tone="onBlue" className="mt-7">
+        <p className="relative mt-3 max-w-[44ch] text-[17px] text-white/85">{nextStep.text}</p>
+        <ButtonLink href={nextStep.href} tone="onBlue" className="relative mt-7">
           {nextStep.action}
         </ButtonLink>
         <span aria-hidden="true" className="absolute right-7 top-7 h-3.5 w-3.5 rounded-full bg-accent ring-4 ring-white/20" />
