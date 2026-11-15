@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { Check, CircleCheck, Printer, X } from "lucide-react";
-import { Button, Card, Modal, PageHeader, Progress } from "@/components/ui";
+import { Check, CircleCheck, X } from "lucide-react";
+import { Button, Card, Modal, PageHeader, PrintButton, Progress } from "@/components/ui";
 import { COURSE_CHANGE, PROGRAMMES, RESULTS, STUDENT } from "@/lib/data";
 import { cgpa } from "@/lib/format";
 import { portal, usePortal } from "@/lib/store";
@@ -75,10 +75,8 @@ export default function ChangeOfCoursePage() {
                 </div>
               ))}
             </dl>
-            <div className="no-print mt-5 flex flex-wrap items-center gap-x-6 gap-y-2">
-              <Button tone="quiet" onClick={() => window.print()}>
-                <Printer size={18} /> Print form
-              </Button>
+            <div className="no-print mt-5 flex flex-wrap items-start gap-x-6 gap-y-2">
+              <PrintButton label="Print form" tone="quiet" />
               <button onClick={() => setWithdrawing(true)} className="min-h-11 font-semibold text-accent underline underline-offset-4">
                 Withdraw request
               </button>

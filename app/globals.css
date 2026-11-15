@@ -61,4 +61,7 @@ h1, h2, h3 {
   .no-print { display: none !important; }
   body { background: #fff; }
   main { padding: 0 !important; margin: 0 !important; }
+  /* When a receipt is open, print only the receipt. */
+  body:has(dialog[open]) .rise > :not(dialog) { display: none !important; }
+  dialog[open] { position: static; width: 100%; margin: 0; }
 }

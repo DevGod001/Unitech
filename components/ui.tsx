@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, type ComponentProps, type ReactNode } from "react";
-import { Check, X } from "lucide-react";
+import { useEffect, useRef, useState, type ComponentProps, type ReactNode } from "react";
+import { Check, Printer, X } from "lucide-react";
 
 export function PageHeader({ title, children }: { title: string; children?: ReactNode }) {
   return (
@@ -128,5 +128,48 @@ export function Progress({ stages, current }: { stages: { label: string; note: s
         );
       })}
     </ol>
+  );
+}
+
+/**
+ * Opens the print window. Some phone browsers, and browsers built into other apps,
+ * ignore print requests without any error. When that happens we tell the student what to do.
+ */
+export function PrintButton({ label, tone = "primary", className = "" }: { label: string; tone?: Tone; className?: string }) {
+  const [blocked, setBlocked] = useState(false);
+
+  function print() {
+    setBlocked(false);
+    let opened = false;
+    const mark = () => {
+      opened = true;
+    };
+    window.addEventListener("beforeprint", mark, { once: true });
+
+    try {
+      // Safari on iPhone answers this older command more reliably than window.print().
+      if (!document.execCommand("print", false)) window.print();
+    } catch {
+      try {
+        window.print();
+      } catch {}
+    }
+
+    window.setTimeout(() => {
+      window.removeEventListener("beforeprint", mark);
+      if (!opened) setBlocked(true);
+    }, 1200);
+  }
+
+  return (
+    <div className={`no-print ${className}`}>
+      <Button tone={tone} onClick={print} className="w-full sm:w-auto">
+        <Printer size={18} /> {label}
+      </Button>
+      <p role="status" className={blocked ? "mt-3 rounded-xl bg-brand-soft px-4 py-3 text-[15px] text-ink" : "sr-only"}>
+        {blocked &&
+          "The print window did not open. This browser may not allow printing. Open the portal in Safari or Chrome and try again, or use your browser's Share menu and choose Print."}
+      </p>
+    </div>
   );
 }

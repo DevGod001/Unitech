@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Check, CircleCheck, Lock, Printer } from "lucide-react";
-import { Button, Card, Modal, PageHeader } from "@/components/ui";
+import { Check, CircleCheck, Lock } from "lucide-react";
+import { Button, Card, Modal, PageHeader, PrintButton } from "@/components/ui";
 import { COURSES, STUDENT, UNIVERSITY } from "@/lib/data";
 import { unitsFor } from "@/lib/format";
 import { portal, usePortal } from "@/lib/store";
@@ -74,10 +74,8 @@ export default function CoursesPage() {
           </div>
         </Card>
 
-        <div className="no-print mt-6 flex flex-col gap-3 sm:flex-row">
-          <Button onClick={() => window.print()}>
-            <Printer size={18} /> Print course form
-          </Button>
+        <div className="no-print mt-6 flex flex-col gap-3 sm:flex-row sm:items-start">
+          <PrintButton label="Print course form" />
           <Button
             tone="quiet"
             onClick={() => {

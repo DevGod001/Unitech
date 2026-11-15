@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Printer, ReceiptText } from "lucide-react";
-import { Badge, Button, Card, Modal, PageHeader } from "@/components/ui";
+import { ReceiptText } from "lucide-react";
+import { Badge, Card, Modal, PageHeader, PrintButton } from "@/components/ui";
 import { FEE_ITEMS, RECEIPTS, STUDENT, UNIVERSITY, type Receipt } from "@/lib/data";
 import { feeSummary, naira } from "@/lib/format";
 
@@ -118,9 +118,7 @@ export default function FeesPage() {
             ))}
           </dl>
           <p className="mt-4 text-[13px] text-muted">Sample receipt for demonstration. Not a valid proof of payment.</p>
-          <Button onClick={() => window.print()} className="no-print mt-5 w-full">
-            <Printer size={18} /> Print receipt
-          </Button>
+          <PrintButton label="Print receipt" className="mt-5" />
         </Modal>
       )}
     </div>
