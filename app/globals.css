@@ -13,6 +13,7 @@
   --color-paper: #f5f7fb;
   --color-line: #e1e6f0;
   --color-gold: #eaa91f;
+  --color-gold-soft: #fdf5df;
   --color-pine: #1b7a4e;
   --font-sans: "Hanken Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Bricolage Grotesque Variable", "Hanken Grotesk Variable", sans-serif;
@@ -52,7 +53,7 @@ h1, h2, h3 {
 }
 .rise { animation: rise 0.35s ease-out both; }
 
-/* Christmas theme */
+/* Seasonal themes */
 @keyframes snowfall {
   from { transform: translate3d(0, -12%, 0); }
   to { transform: translate3d(var(--drift, 12px), 112vh, 0); }
@@ -69,10 +70,11 @@ h1, h2, h3 {
   animation: snowfall linear infinite;
 }
 .bulb { animation: twinkle 2.4s ease-in-out infinite; }
+.sparkle { position: absolute; animation: twinkle 3.2s ease-in-out infinite; }
 
 @media (prefers-reduced-motion: reduce) {
   .snowflake { animation: none !important; top: var(--rest, 40%); }
-  .bulb { animation: none !important; }
+  .bulb, .sparkle { animation: none !important; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;

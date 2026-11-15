@@ -218,9 +218,29 @@ export const COURSE_CHANGE = {
   closes: "Friday 11 December 2026",
 };
 
-// Seasonal theme. Set `active` to false to return to the normal look.
-export const CHRISTMAS = {
-  active: true,
-  breakStarts: "Friday 18 December 2026",
-  lecturesResume: "Monday 4 January 2027",
+// Seasonal theme. Change SEASON to "christmas", "eid" or "none".
+export const SEASON: "none" | "christmas" | "eid" = "eid";
+
+const firstName = STUDENT.firstName;
+
+const SEASONS = {
+  none: null,
+  christmas: {
+    greeting: `Merry Christmas, ${firstName}`,
+    loginHeadline: "Merry Christmas from Unitech.",
+    loginText: "Compliments of the season. Finish your registration and fees before you travel home for the break.",
+    shortLine: "Merry Christmas from all of us at Unitech",
+    bannerTitle: "Compliments of the season from all of us at Unitech",
+    bannerText: "Lectures stop for the break on Friday 18 December 2026 and start again on Monday 4 January 2027. Travel safely.",
+  },
+  eid: {
+    greeting: `Eid Mubarak, ${firstName}`,
+    loginHeadline: "Eid Mubarak from Unitech.",
+    loginText: "Wishing our Muslim students, staff and their families a blessed and joyful Eid.",
+    shortLine: "Eid Mubarak from all of us at Unitech",
+    bannerTitle: "Eid Mubarak from all of us at Unitech",
+    bannerText: "May this Eid bring peace and joy to you and your family. There are no lectures on the public holidays. Travel safely.",
+  },
 };
+
+export const SEASONAL = SEASONS[SEASON];

@@ -1,4 +1,5 @@
-import { CHRISTMAS } from "@/lib/data";
+import { SEASON } from "@/lib/data";
+import { CRESCENT_PATH } from "./Festive";
 
 export function Logo({ light = false }: { light?: boolean }) {
   return (
@@ -6,7 +7,11 @@ export function Logo({ light = false }: { light?: boolean }) {
       <svg viewBox="0 0 40 40" className="h-9 w-9 shrink-0 overflow-visible" aria-hidden="true">
         <path d="M4 4h32v18c0 9-7 14-16 16C11 36 4 31 4 22z" fill={light ? "#fff" : "#1740c9"} />
         <path d="M13 11v10a7 7 0 0 0 14 0V11h-4.2v10a2.8 2.8 0 0 1-5.6 0V11z" fill={light ? "#1740c9" : "#fff"} />
-        {CHRISTMAS.active ? (
+        {SEASON === "eid" ? (
+          <g transform="translate(24 -5) scale(0.7)">
+            <path d={CRESCENT_PATH} fill="#eaa91f" stroke={light ? "#1740c9" : "#fff"} strokeWidth="1.6" paintOrder="stroke" />
+          </g>
+        ) : SEASON === "christmas" ? (
           <g transform="rotate(14 30 4)">
             <path d="M17 5Q26-11 39 5z" fill="#d4252e" />
             <rect x="14.5" y="2.5" width="27" height="6" rx="3" fill="#fff" stroke={light ? "#1740c9" : "#e1e6f0"} strokeWidth="0.8" />

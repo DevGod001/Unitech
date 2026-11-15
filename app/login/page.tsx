@@ -3,10 +3,10 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState, type FormEvent } from "react";
 import { Eye, EyeOff, LockKeyhole } from "lucide-react";
-import { Lights, Snow, Tree } from "@/components/Festive";
+import { Emblem, Garland, Sky } from "@/components/Festive";
 import { Logo } from "@/components/Logo";
 import { Button } from "@/components/ui";
-import { CHRISTMAS, DEMO_LOGIN, UNIVERSITY } from "@/lib/data";
+import { SEASON, SEASONAL, DEMO_LOGIN, UNIVERSITY } from "@/lib/data";
 import { portal, usePortal } from "@/lib/store";
 
 const MAX_TRIES = 5;
@@ -63,18 +63,16 @@ export default function LoginPage() {
     <div className="grid min-h-dvh lg:grid-cols-[1.05fr_1fr]">
       {/* Brand panel */}
       <div className="relative hidden overflow-hidden bg-brand p-14 text-white lg:flex lg:flex-col lg:justify-between">
-        <Snow count={34} />
+        <Sky count={34} />
         <span className="relative z-10">
           <Logo light />
         </span>
         <div className="relative z-10">
           <h1 className="max-w-[12ch] text-[64px] font-bold leading-[1.02]">
-            {CHRISTMAS.active ? "Merry Christmas from Unitech." : "Everything for your semester, in one place."}
+            {SEASONAL?.loginHeadline ?? "Everything for your semester, in one place."}
           </h1>
           <p className="mt-6 max-w-[38ch] text-[19px] text-white/80">
-            {CHRISTMAS.active
-              ? "Compliments of the season. Finish your registration and fees before you travel home for the break."
-              : "Register courses, check results, see your fees and find your next class."}
+            {SEASONAL?.loginText ?? "Register courses, check results, see your fees and find your next class."}
           </p>
         </div>
         <p className="relative z-10 text-[15px] text-white/70">
@@ -89,14 +87,18 @@ export default function LoginPage() {
 
       {/* Sign-in form */}
       <div className="relative flex flex-col justify-center px-6 py-10 sm:px-12">
-        <Lights className="absolute inset-x-0 top-0" />
+        <Garland className="absolute inset-x-0 top-0" />
         <div className="mx-auto w-full max-w-[420px]">
           <div className="mb-10 lg:hidden">
             <Logo />
           </div>
-          {CHRISTMAS.active && (
-            <p className="mb-6 flex items-center gap-3 rounded-2xl bg-accent-soft p-4 font-semibold text-accent lg:hidden">
-              <Tree className="h-10 w-9 shrink-0" /> Merry Christmas from all of us at Unitech
+          {SEASONAL && (
+            <p
+              className={`mb-6 flex items-center gap-3 rounded-2xl p-4 font-semibold lg:hidden ${
+                SEASON === "eid" ? "bg-gold-soft text-ink" : "bg-accent-soft text-accent"
+              }`}
+            >
+              <Emblem className="h-10 w-9 shrink-0" /> {SEASONAL.shortLine}
             </p>
           )}
           <h2 className="text-[32px] font-bold">Sign in</h2>

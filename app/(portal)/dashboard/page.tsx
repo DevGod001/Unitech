@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { ArrowLeftRight, BedDouble, Check, ChevronRight, MapPin } from "lucide-react";
 import { Badge, ButtonLink, Card } from "@/components/ui";
-import { Snow, Tree } from "@/components/Festive";
-import { CHRISTMAS, STUDENT, UNIVERSITY } from "@/lib/data";
+import { Emblem, Sky } from "@/components/Festive";
+import { SEASON, SEASONAL, STUDENT, UNIVERSITY } from "@/lib/data";
 import { cgpa, classesOn, courseByCode, feeSummary, naira, nextClassDay, unitsFor } from "@/lib/format";
 import { usePortal } from "@/lib/store";
 
@@ -66,27 +66,33 @@ export default function DashboardPage() {
     <div className="rise">
       <header className="mb-8">
         <h1 className="text-[30px] font-bold sm:text-[38px]">
-          {CHRISTMAS.active ? "Merry Christmas" : "Welcome"}, {STUDENT.firstName}
+          {SEASONAL?.greeting ?? `Welcome, ${STUDENT.firstName}`}
         </h1>
         <p className="mt-2 text-[17px] text-muted">
           {STUDENT.level} {STUDENT.department}. {UNIVERSITY.semester}, {UNIVERSITY.session}.
         </p>
       </header>
 
-      {CHRISTMAS.active && (
-        <section aria-label="Christmas message" className="mb-6 flex items-center gap-4 rounded-2xl border border-accent/20 bg-accent-soft p-5">
-          <Tree className="h-14 w-12 shrink-0" />
+      {SEASONAL && (
+        <section
+          aria-label="Seasonal message"
+          className={`mb-6 flex items-center gap-4 rounded-2xl border p-5 ${
+            SEASON === "eid" ? "border-gold/40 bg-gold-soft" : "border-accent/20 bg-accent-soft"
+          }`}
+        >
+          <Emblem className="h-14 w-12 shrink-0" />
           <p className="text-[16px]">
-            <span className="block font-display text-[18px] font-bold text-accent">Compliments of the season from all of us at Unitech</span>
-            Lectures stop for the break on {CHRISTMAS.breakStarts} and start again on {CHRISTMAS.lecturesResume}. Travel
-            safely.
+            <span className={`block font-display text-[18px] font-bold ${SEASON === "eid" ? "text-ink" : "text-accent"}`}>
+              {SEASONAL.bannerTitle}
+            </span>
+            {SEASONAL.bannerText}
           </p>
         </section>
       )}
 
       {/* The one thing to do now */}
       <section aria-labelledby="next-step" className="relative overflow-hidden rounded-3xl bg-brand p-7 text-white sm:p-10">
-        <Snow />
+        <Sky />
         <p className="relative text-[15px] font-semibold text-white/75">Your next step</p>
         <h2 id="next-step" className="relative mt-2 max-w-[18ch] text-[30px] font-bold sm:text-[40px]">
           {nextStep.title}
